@@ -52,8 +52,8 @@ The win percent metric follows [AlpacaEval](https://github.com/tatsu-lab/alpaca_
 Create conda environment
 
 ```bash
-conda create -n alright python=3.10
-conda activate alright
+conda create -n xright python=3.10
+conda activate xright
 ```
 
 To install the denpendencies, navigate to the root directory and
