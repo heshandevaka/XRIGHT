@@ -38,7 +38,7 @@ Loss trade-off plot for training [Pythia-1b](https://huggingface.co/EleutherAI/p
 
 #### Benchmark result
 
-Result on** Llama-3-8b**. Here $\lambda$ is the normalized weight for DPO loss, defining the trade-off between DPO and SFT:
+Result on **Llama-3-8b**. Here $\lambda$ is the normalized weight for DPO loss, defining the trade-off between DPO and SFT:
 
 <div align="center">
     <img alt="benchmark table" src="./docs/benchmark_table.png" style="height: 210px;" />
