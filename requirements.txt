@@ -1,0 +1,23 @@
+accelerate
+alpaca-eval==0.5.4
+bitsandbytes
+datasets
+deepeval==1.3.0
+deepspeed==0.14.4
+einops
+# flash-attn==2.6.1 use pip install flash-attn==2.6.1 --no-build-isolation to install the needed flash attention version
+isort
+jsonlines
+lm-format-enforcer
+loralib
+optimum
+packaging
+peft
+ray[default]==2.12.0
+torch==2.4.1 # might need to specify a version that is compatible with the local CUDA version 
+torchmetrics
+tqdm
+transformers==4.42.4
+transformers_stream_generator
+wandb
+wheel
