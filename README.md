@@ -13,7 +13,7 @@ This is the official repo of ALRIGHT and MAXRIGHT algorithms for efficient trade
 
 ## Introduction
 
-The widely adopted approach in post-training popular open-source LLMs is to sequentially perform SFT and DPO. However, sequential training is sub-optimal in terms of SFT and DPO trade-off: when trained with preference data, LLM inevitably forgets about the knowledge learnt during SFT, despite the presence of KL regularization. Similar issue persists when performing DPO first and then SFT in LLM continual learning. Simple solutions like directly mixing the DPO and SFT objectives greatly increases the computational cost and slows down the training speed.
+The widely adopted approach in post-training popular open-source LLMs is to sequentially perform SFT and DPO. However, sequential training is sub-optimal in terms of SFT and DPO trade-off: when trained with preference data, LLM inevitably forgets about the knowledge learnt during SFT, despite the presence of KL regularization. Similar issue persists when performing DPO first and then SFT in LLM continual learning. A simple solution like directly mixing the DPO and SFT objectives greatly increases the computational cost and slows down the training speed.
 
  As a remedy for these issues, we implement the [ALRIGHT and MAXRIGHT](https://arxiv.org/) algorithms. The algorithms demonstrate the following merits:
  
