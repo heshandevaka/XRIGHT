@@ -52,7 +52,7 @@ for lambd in $LAMBD_SET; do
       --learning_rate $learning_rate \
       --lora_rank 32 \
       --lora_alpha 32 \
-      --use_wandb {wandb_token} \
+      --use_wandb True \
       --target_module query_key_value
 done
 
@@ -90,7 +90,7 @@ for lambd in $LAMBD_SET; do
       --learning_rate $learning_rate \
       --lora_rank 32 \
       --lora_alpha 32 \
-      --use_wandb {wandb_token} \
+      --use_wandb True \
       --target_module query_key_value
 done
 
@@ -127,6 +127,6 @@ for lambd in $LAMBD_SET; do
       --learning_rate $learning_rate \
       --lora_rank 32 \
       --lora_alpha 32 \
-      --use_wandb {wandb_token} \
+      --use_wandb True \
       --target_module query_key_value
 done
