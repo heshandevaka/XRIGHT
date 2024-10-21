@@ -8,7 +8,7 @@
 
 
 
-This is the official repo of ALRIGHT and MAXRIGHT algorithms for improved LLM post-training (see the paper [Mitigating Forgetting in LLM Supervised Fine-Tuning and Preference Learning](https://arxiv.org/)).
+This is the official repo of ALRIGHT and MAXRIGHT algorithms for efficient trade-off in LLM post-training (see the paper [Mitigating Forgetting in LLM Supervised Fine-Tuning and Preference Learning](https://arxiv.org/)).
 
 
 ## Introduction
