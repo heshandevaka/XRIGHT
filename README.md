@@ -17,7 +17,7 @@ The widely adopted approach in post-training popular open-source LLMs is to sequ
 
  As a remedy of these issues, we implement the [ALRIGHT and MAXRIGHT](https://arxiv.org/) algorithms. The algorithms demonstrate the following merits:
  
-- **Improved post-training performance**: Models such as [Llama-3-8b](https://huggingface.co/collections/meta-llama/meta-llama-3-66214712577ca38149ebb2b6) trained with ALRIGHT/MAXRIGHT demonstrates superior quality than those trained with sequential method. Experiments showcase a 3% on [MMLU](https://huggingface.co/datasets/cais/mmlu) (1-shot) and a 31% win rate increase on [Anthropic HH](https://huggingface.co/datasets/Anthropic/hh-rlhf).
+- **Improved post-training performance**: Models such as [Llama-3-8b](https://huggingface.co/collections/meta-llama/meta-llama-3-66214712577ca38149ebb2b6) trained with ALRIGHT/MAXRIGHT demonstrates superior quality than those trained with sequential method. Experiments showcase a 3% increase on [MMLU](https://huggingface.co/datasets/cais/mmlu) (1-shot) and a 31% win rate increase on [Anthropic HH](https://huggingface.co/datasets/Anthropic/hh-rlhf).
 
 - **Similar computational cost as sequential training**: The computational cost compared to sequential SFT/DPO is similar, with a worst-case increase of 2% in GPU utilization when training [Llama-3-8b](https://huggingface.co/collections/meta-llama/meta-llama-3-66214712577ca38149ebb2b6).
 
