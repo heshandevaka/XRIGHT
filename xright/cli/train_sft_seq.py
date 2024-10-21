@@ -52,11 +52,6 @@ def train(args):
     # handles printing only once
     strategy.print(model)
 
-
-    # # DEBUG
-    # for name, param in model.model.named_parameters():
-    #     print(f'{name}: {torch.norm(param).item()}')
-
     # configure optimizer
     optim = strategy.create_optimizer(model, lr=args.learning_rate, betas=args.adam_betas, weight_decay=args.l2)
 
@@ -129,7 +124,6 @@ def train(args):
     )
     # scheduler
 
-    # constant scheduler rate
     # constant scheduler rate
     scheduler = get_scheduler(
         "constant",
