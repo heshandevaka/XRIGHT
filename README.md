@@ -84,7 +84,7 @@ max_eval_steps=10
 sft_opt=1.4980
 dpo_opt=0.0647
 ```
-Note that, for the current implementation of ALRIGHT and MAXRIGHT, lengths of trainloaders for RLHF and SFT datasets should be same, thus the variable specification should satisfy `$sft_max_samples/$sft_micro_train_batch_size = $rlhf_max_samples/rlhf_micro_train_batch_size`. This constraint will be removed in the future. `sft_opt, dpo_opt` can be pre-computed by a procedure similar to training a reference policy (given next), or they can be set to `0` if the value is not known.
+Note that, for the current implementation of ALRIGHT and MAXRIGHT, lengths of trainloaders for RLHF and SFT datasets should be same, thus the variable specification should satisfy `$sft_max_samples/$sft_micro_train_batch_size = $rlhf_max_samples/$rlhf_micro_train_batch_size`. This constraint will be removed in the future. `sft_opt, dpo_opt` can be pre-computed by a procedure similar to training a reference policy (given next), or they can be set to `0` if the value is not known.
 
 First, we need to train the reference policy that will be needed for the DPO objective. This can be trained by
 
