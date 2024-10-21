@@ -201,7 +201,7 @@ where `sft_opt, dpo_opt` can be pre computed by a procedure similar to training 
 
 To run experiments given in the paper, run the following commands at the top level of this repo. All the scripts needed to run these commands can be found in the directory `examples/scripts/`.
 
-# Pythia-1b Experiments
+### Pythia-1b Experiments
 
 For training the optimal SFT and DPO models needed for wither as reference policies or needed for optimal SFT and DPO objective vaue calculation, run
 ```bash
@@ -225,7 +225,7 @@ To train the joint optimization methods with model trained on the chosen respons
 ./run_moo_pref_ref_training_pythia1b.sh
 ```
 
-# Llama3-8b Experiments
+### Llama3-8b Experiments
 
 For training the optimal SFT and DPO models needed for wither as reference policies or needed for optimal SFT and DPO objective vaue calculation, run
 ```bash
