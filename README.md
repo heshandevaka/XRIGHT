@@ -15,7 +15,7 @@ This is the official repo of ALRIGHT and MAXRIGHT algorithms for efficient trade
 
 The widely adopted approach in post-training popular open-source LLMs is to sequentially perform SFT and DPO. However, sequential training is sub-optimal in terms of SFT and DPO trade-off: when trained with preference data, LLM inevitably forgets about the knowledge learnt during SFT, despite the presence of KL regularization. Similar issue persists when performing DPO first and then SFT in LLM continual learning. Simple solution like directly mixing the DPO and SFT objectives greatly increases the computational cost and slows down the training speed.
 
- As a remedy of these issues, we implement the [ALRIGHT and MAXRIGHT](https://arxiv.org/) algorithms. The algorithms demonstrate the following merits:
+ As a remedy for these issues, we implement the [ALRIGHT and MAXRIGHT](https://arxiv.org/) algorithms. The algorithms demonstrate the following merits:
  
 - **Improved post-training performance**: Models such as [Llama-3-8b](https://huggingface.co/collections/meta-llama/meta-llama-3-66214712577ca38149ebb2b6) trained with ALRIGHT/MAXRIGHT demonstrates superior quality than those trained with sequential method. Experiments showcase a 3% increase on [MMLU](https://huggingface.co/datasets/cais/mmlu) (1-shot) and a 31% win rate increase on [Anthropic HH](https://huggingface.co/datasets/Anthropic/hh-rlhf).
 
@@ -74,7 +74,7 @@ beta=0.1
 lambd=0.5
 learning_rate=5e-5
 max_len=2048 
-train_batch_size=2 # set to no. GPUS used
+train_batch_size=2
 sft_max_samples=24000  
 rlhf_max_samples=8000  
 sft_micro_train_batch_size=12  
@@ -84,7 +84,7 @@ max_eval_steps=10
 sft_opt=1.4980
 dpo_opt=0.0647
 ```
-Note that, for the current implementation of ALRIGHT and MAXRIGHT, lengths of trainloaders for RLHF and SFT datasets should be same, thus the variable specification should satisfy `$sft_max_samples/$sft_micro_train_batch_size = $rlhf_max_samples/rlhf_micro_train_batch_size`. This constraint will be removed in future.
+Note that, for the current implementation of ALRIGHT and MAXRIGHT, lengths of trainloaders for RLHF and SFT datasets should be same, thus the variable specification should satisfy `$sft_max_samples/$sft_micro_train_batch_size = $rlhf_max_samples/rlhf_micro_train_batch_size`. This constraint will be removed in the future. `sft_opt, dpo_opt` can be pre-computed by a procedure similar to training a reference policy (given next), or they can be set to `0` if the value is not known.
 
 First, we need to train the reference policy that will be needed for the DPO objective. This can be trained by
 
@@ -182,7 +182,6 @@ deepspeed --module xright.cli.train_sft_dpo_maxright \
     --use_wandb True \
     --target_module query_key_value
 ```
-where `sft_opt, dpo_opt` can be pre-computed by a procedure similar to training a reference policy, or they can be set to `0` if the value is not known.
 
 ## Running Experiments
 
