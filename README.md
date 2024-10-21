@@ -13,13 +13,13 @@ This is the official repo of ALRIGHT and MAXRIGHT algorithms for improved LLM po
 
 ## Introduction
 
-The widely adopted approach in post-training popular open-source LLMs is to sequentially perform SFT and DPO. However, sequential training is sub-optimal in terms of SFT and DPO trade-off: when trained with preference data, LLM inevitably forgets about the knowledge learnt during SFT, despite the presence of KL regularization. Similar issue persists when performing DPO first and then SFT in LLM continual learning. Simple solution like directly mixing the DPO and SFT objective greatly increases the computational cost and slows down the training speed.
+The widely adopted approach in post-training popular open-source LLMs is to sequentially perform SFT and DPO. However, sequential training is sub-optimal in terms of SFT and DPO trade-off: when trained with preference data, LLM inevitably forgets about the knowledge learnt during SFT, despite the presence of KL regularization. Similar issue persists when performing DPO first and then SFT in LLM continual learning. Simple solution like directly mixing the DPO and SFT objectives greatly increases the computational cost and slows down the training speed.
 
  As a remedy of these issues, we implement the [ALRIGHT and MAXRIGHT](https://arxiv.org/) algorithms. The algorithms demonstrate the following merits:
  
-- **Improved post-training performance**: Models such as [Llama-3-8b](https://huggingface.co/collections/meta-llama/meta-llama-3-66214712577ca38149ebb2b6) trained with ALRIGHT/MAXRIGHT demonstrates suprior quality than those trained with sequential method. Experiments showcase a 3% on [MMLU](https://huggingface.co/datasets/cais/mmlu) (1-shot) and a 31% win rate increase on [Anthropic HH](https://huggingface.co/datasets/Anthropic/hh-rlhf).
+- **Improved post-training performance**: Models such as [Llama-3-8b](https://huggingface.co/collections/meta-llama/meta-llama-3-66214712577ca38149ebb2b6) trained with ALRIGHT/MAXRIGHT demonstrates superior quality than those trained with sequential method. Experiments showcase a 3% on [MMLU](https://huggingface.co/datasets/cais/mmlu) (1-shot) and a 31% win rate increase on [Anthropic HH](https://huggingface.co/datasets/Anthropic/hh-rlhf).
 
-- **Similar computaitonal cost as sequential training**: The computational cost compared to sequential SFT/DPO is similar, with a worst-case increase of 2% in GPU utilization when training [Llama-3-8b](https://huggingface.co/collections/meta-llama/meta-llama-3-66214712577ca38149ebb2b6).
+- **Similar computational cost as sequential training**: The computational cost compared to sequential SFT/DPO is similar, with a worst-case increase of 2% in GPU utilization when training [Llama-3-8b](https://huggingface.co/collections/meta-llama/meta-llama-3-66214712577ca38149ebb2b6).
 
 
 
@@ -56,7 +56,7 @@ conda create -n xright python=3.10
 conda activate xright
 ```
 
-To install xright, navigate to the top level directory and run
+To install xright, navigate to the top-level of the repo and run
 ```bash
 pip install -e .
 ```
@@ -68,7 +68,7 @@ pip install flash-attn==2.6.1 --no-build-isolation
 
 ## An Example Implementation
 
-Here we provide exmsple implementations of ALRIGHT and MAXRIGHT, using [Pythia-1b](https://huggingface.co/EleutherAI/pythia-1b) model. First, we need to train the reference policy that will be needed for the DPO objective. This can be trained by
+Here we provide example implementations of ALRIGHT and MAXRIGHT, using [Pythia-1b](https://huggingface.co/EleutherAI/pythia-1b) model. First, we need to train the reference policy that will be needed for the DPO objective. This can be trained by
 
 ```bash
 learning_rate=5e-5
@@ -195,7 +195,7 @@ deepspeed --module xright.cli.train_sft_dpo_maxright \
     --use_wandb True \
     --target_module query_key_value
 ```
-where `sft_opt, dpo_opt` can be pre computed by a procedure similar to training a reference policy, or they can be set to `0` if the value is not known.
+where `sft_opt, dpo_opt` can be pre-computed by a procedure similar to training a reference policy, or they can be set to `0` if the value is not known.
 
 ## Running Experiments
 
@@ -203,7 +203,7 @@ To run experiments given in the paper, run the following commands at the top lev
 
 ### Pythia-1b Experiments
 
-For training the optimal SFT and DPO models needed for wither as reference policies or needed for optimal SFT and DPO objective vaue calculation, run
+For training the optimal SFT and DPO models needed either as reference policies or for optimal SFT and DPO objective value calculation, run
 ```bash
 ./run_sft_dpo_optim_pythia1b.sh
 ```
@@ -220,14 +220,14 @@ To train the joint optimization methods with SFT optimum model as the reference 
 ./run_moo_sft_ref_training_pythia1b.sh
 ```
 
-To train the joint optimization methods with model trained on the chosen responses of the preference dataaset as the reference model (corresponding to DPO first then SFT sequential training) run
+To train the joint optimization methods with the model trained on the chosen responses of the preference dataset as the reference model (corresponding to DPO first then SFT sequential training) run
 ```bash
 ./run_moo_pref_ref_training_pythia1b.sh
 ```
 
 ### Llama3-8b Experiments
 
-For training the optimal SFT and DPO models needed for wither as reference policies or needed for optimal SFT and DPO objective vaue calculation, run
+For training the optimal SFT and DPO models needed either as reference policies or for optimal SFT and DPO objective value calculation, run
 ```bash
 ./run_sft_dpo_optim_llama3.sh
 ```
@@ -254,7 +254,7 @@ To evaluate the trained models using MMLU benchmark of [DeepEval](https://github
 
 ## Acknowledgement
 
-We would like to thank all packages this repo is built on, and especially
+We would like to thank all packages this repo is built on, especially
 
 - [OpenRLHF](https://github.com/OpenRLHF/OpenRLHF): for the vanilla SFT and DPO implementation and their great extention capability.
 - [DeepSpeed](https://github.com/microsoft/DeepSpeed): for the efficient distributed training functions.
