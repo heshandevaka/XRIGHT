@@ -68,18 +68,27 @@ pip install flash-attn==2.6.1 --no-build-isolation
 
 ## An Example Implementation
 
-Here we provide example implementations of ALRIGHT and MAXRIGHT, using [Pythia-1b](https://huggingface.co/EleutherAI/pythia-1b) model. First, we need to train the reference policy that will be needed for the DPO objective. This can be trained by
-
+Here we provide example implementations of ALRIGHT and MAXRIGHT, using [Pythia-1b](https://huggingface.co/EleutherAI/pythia-1b) model. The following variables need to be specified, an example specification (for training distributed between 2 GPUs) would be
 ```bash
-export CUDA_VISIBLE_DEVICES=0,1
+beta=0.1
+lambd=0.5
 learning_rate=5e-5
 max_len=2048 
 train_batch_size=2 # set to no. GPUS used
-sft_max_samples=24000 
+sft_max_samples=24000  
 rlhf_max_samples=8000  
 sft_micro_train_batch_size=12  
 rlhf_micro_train_batch_size=4  
 max_epochs=6
+max_eval_steps=10 
+sft_opt=1.4980
+dpo_opt=0.0647
+```
+Note that, for the current implementation of ALRIGHT and MAXRIGHT, lengths of trainloaders for RLHF and SFT datasets should be same, thus the variable specification should satisfy `$sft_max_samples/$sft_micro_train_batch_size = $rlhf_max_samples/rlhf_micro_train_batch_size`. This constraint will be removed in future.
+
+First, we need to train the reference policy that will be needed for the DPO objective. This can be trained by
+
+```bash
 deepspeed --module xright.cli.train_sft_pref\
    --save_path ./checkpoint/pythia-1b-beta=$beta-learning_rate=$learning_rate-epoch=$max_epochs-sft-pref-optim \
    --save_steps -1 \
@@ -106,17 +115,6 @@ deepspeed --module xright.cli.train_sft_pref\
 Next, we can implement ALRIGHT for joint DPO and SFT optimization by running
 
 ```bash
-export CUDA_VISIBLE_DEVICES=0,1
-beta=0.1
-lambd=0.5
-learning_rate=5e-5
-max_len=2048 
-train_batch_size=2 # set to no. GPUS used
-sft_max_samples=24000  
-rlhf_max_samples=8000  
-sft_micro_train_batch_size=12  
-rlhf_micro_train_batch_size=4  
-max_epochs=6
 deepspeed --module xright.cli.train_sft_dpo_alright \
     --save_path ./checkpoint/pythia-1b-beta=$beta-learning_rate=$learning_rate-sft_dpo_alright-temp \
     --save_steps -1 \
@@ -150,20 +148,6 @@ deepspeed --module xright.cli.train_sft_dpo_alright \
 Similarly, we can implement MAXRIGHT for joint DPO and SFT optimization by running
 
 ```bash
-export CUDA_VISIBLE_DEVICES=0,1
-beta=0.1
-lambd=0.5
-learning_rate=5e-5
-max_len=2048 
-train_batch_size=2 # set to no. GPUS used
-sft_max_samples=24000  
-rlhf_max_samples=8000  
-sft_micro_train_batch_size=12  
-rlhf_micro_train_batch_size=4  
-max_epochs=6
-max_eval_steps=10 
-sft_opt=1.4980
-dpo_opt=0.0647
 deepspeed --module xright.cli.train_sft_dpo_maxright \
     --save_path ./checkpoint/pythia-1b-beta=$beta-learning_rate=$learning_rate-sft_dpo_maxright-temp \
     --save_steps -1 \
