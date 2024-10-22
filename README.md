@@ -4,18 +4,18 @@
 
 <hr>
 
-[![Code License](https://img.shields.io/badge/Code%20License-Apache_2.0-green.svg)](https://github.com/hanshen95/SEAL/blob/main/LICENSE) [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/release/python-3100/)  [![Arxiv link](https://img.shields.io/badge/cs.LG-submitted-b31b1b?logo=arxiv&logoColor=red)](https://arxiv.org/)
+[![Code License](https://img.shields.io/badge/Code%20License-Apache_2.0-green.svg)](https://github.com/hanshen95/SEAL/blob/main/LICENSE) [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/release/python-3100/)  [![Arxiv link](https://img.shields.io/badge/cs.LG-2410.15483-b31b1b?logo=arxiv&logoColor=red)](https://arxiv.org/abs/2410.15483)
 
 
 
-This is the official repo of ALRIGHT and MAXRIGHT algorithms for efficient trade-off in LLM post-training (see the paper [Mitigating Forgetting in LLM Supervised Fine-Tuning and Preference Learning](https://arxiv.org/)).
+This is the official repo of ALRIGHT and MAXRIGHT algorithms for efficient trade-off in LLM post-training (see the paper [Mitigating Forgetting in LLM Supervised Fine-Tuning and Preference Learning](https://arxiv.org/abs/2410.15483)).
 
 
 ## Introduction
 
 The widely adopted approach in post-training popular open-source LLMs is to sequentially perform SFT and DPO. However, sequential training is sub-optimal in terms of SFT and DPO trade-off: when trained with preference data, LLM inevitably forgets about the knowledge learnt during SFT, despite the presence of KL regularization. Similar issue persists when performing DPO first and then SFT in LLM continual learning. A simple solution like directly mixing the DPO and SFT objectives greatly increases the computational cost and slows down the training speed.
 
- As a remedy for these issues, we implement the [ALRIGHT and MAXRIGHT](https://arxiv.org/) algorithms. The algorithms demonstrate the following merits:
+ As a remedy for these issues, we implement the [ALRIGHT and MAXRIGHT](https://arxiv.org/abs/2410.15483) algorithms. The algorithms demonstrate the following merits:
  
 - **Improved post-training performance**: Models such as [Llama-3-8b](https://huggingface.co/collections/meta-llama/meta-llama-3-66214712577ca38149ebb2b6) trained with ALRIGHT/MAXRIGHT demonstrates superior quality than those trained with sequential method. Experiments showcase a 3% increase on [MMLU](https://huggingface.co/datasets/cais/mmlu) (1-shot) and a 31% win rate increase on [Anthropic HH](https://huggingface.co/datasets/Anthropic/hh-rlhf).
 
@@ -26,7 +26,7 @@ The widely adopted approach in post-training popular open-source LLMs is to sequ
 
 ## Example Results
 
-We give some examples here. For complete results, please see [paper](https://arxiv.org/).
+We give some examples here. For complete results, please see [paper](https://arxiv.org/abs/2410.15483).
 
 #### Loss space result and computational complexity
 
