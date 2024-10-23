@@ -41,7 +41,7 @@ for na in $NA_SET; do
       --learning_rate $learning_rate \
       --lora_rank 16 \
       --lora_alpha 16 \
-      --use_wandb True \
+      --use_wandb WANDB_KEY \
       --target_module q_proj v_proj \
       --gradient_checkpointing
 
@@ -71,7 +71,7 @@ for na in $NA_SET; do
       --learning_rate $learning_rate \
       --lora_rank 16 \
       --lora_alpha 16 \
-      --use_wandb True \
+      --use_wandb WANDB_KEY \
       --target_module q_proj v_proj \
       --gradient_checkpointing
 

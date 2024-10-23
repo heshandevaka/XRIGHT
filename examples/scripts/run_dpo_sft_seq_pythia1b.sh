@@ -41,7 +41,7 @@ for na in $NA_SET; do
       --learning_rate $learning_rate \
       --lora_rank 32 \
       --lora_alpha 32 \
-      --use_wandb True \
+      --use_wandb WANDB_KEY \
       --target_module query_key_value
 
    # ----------------------------------------- SFT (dataset:vicgalle/alpaca-gpt4) -----------------------------------------
@@ -70,7 +70,7 @@ for na in $NA_SET; do
       --learning_rate $learning_rate \
       --lora_rank 32 \
       --lora_alpha 32 \
-      --use_wandb True \
+      --use_wandb WANDB_KEY \
       --target_module query_key_value
 
 done
