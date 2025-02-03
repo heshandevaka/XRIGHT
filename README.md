@@ -130,6 +130,7 @@ deepspeed --module xright.cli.train_sft_dpo_alright \
     --sft_max_samples $sft_max_samples \
     --sft_max_len $max_len \
     --sft_micro_train_batch_size $sft_micro_train_batch_size \
+    --input_key instruction \
     --lambd $lambd \
     --pretrain EleutherAI/pythia-1b \
     --ref_pretrain ./checkpoint/pythia-1b-beta=$beta-learning_rate=$learning_rate-epoch=$max_epochs-sft-pref-optim  \
@@ -163,6 +164,7 @@ deepspeed --module xright.cli.train_sft_dpo_maxright \
     --sft_max_samples $sft_max_samples \
     --sft_max_len $max_len \
     --sft_micro_train_batch_size $sft_micro_train_batch_size \
+    --input_key instruction \
     --lambd $lambd \
     --sft_opt $sft_opt \
     --dpo_opt $dpo_opt \
