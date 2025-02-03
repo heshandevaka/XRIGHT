@@ -12,7 +12,6 @@ from xright.utils import blending_datasets, get_strategy, get_tokenizer
 
 import torch
 
-
 def train(args):
     # configure strategy
     strategy = get_strategy(args)
@@ -31,6 +30,9 @@ def train(args):
         model_name='model'
     )
 
+    torch.cuda.is_available():
+        model.to('cuda')
+
     ref_model = Actor(
         args.ref_pretrain,
         use_flash_attention_2=args.flash_attn,
@@ -43,6 +45,9 @@ def train(args):
         ds_config=strategy.get_ds_eval_config(offload=args.ref_offload),
         model_name='ref_model'
     )
+
+    torch.cuda.is_available():
+        ref_model.to('cuda')
 
     # configure tokenizer
     tokenizer = get_tokenizer(args.pretrain, model.model, "right", strategy, use_fast=not args.disable_fast_tokenizer)

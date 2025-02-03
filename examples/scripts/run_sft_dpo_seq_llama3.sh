@@ -37,6 +37,7 @@ for na in $NA_SET; do
       --sft_max_samples $sft_max_samples \
       --sft_max_len $max_len \
       --sft_micro_train_batch_size $sft_micro_train_batch_size \
+      --input_key instruction \
       --flash_attn \
       --learning_rate $learning_rate \
       --lora_rank 16 \
@@ -61,6 +62,7 @@ for na in $NA_SET; do
       --sft_max_samples $sft_max_samples \
       --sft_max_len $max_len \
       --sft_micro_train_batch_size $sft_micro_train_batch_size \
+      --input_key instruction \
       --pretrain ./checkpoint/Meta-Llama-3-8B-beta=$beta-learning_rate=$learning_rate-seq-sft-na-$((4-$na)) \
       --ref_pretrain ./checkpoint/Meta-Llama-3-8B-beta=$beta-learning_rate=$learning_rate-epoch=$max_epochs-sft-optim  \
       --bf16 \
