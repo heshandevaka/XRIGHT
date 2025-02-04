@@ -28,7 +28,7 @@ def train(args):
         ds_config=strategy.get_ds_train_config(is_actor=True),
         model_name='model'
     )
-    torch.cuda.is_available():
+    if torch.cuda.is_available():
         model.to('cuda')
     # configure tokenizer
     tokenizer = get_tokenizer(args.pretrain, model.model, "right", strategy, use_fast=not args.disable_fast_tokenizer)

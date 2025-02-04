@@ -42,7 +42,7 @@ def train(args):
         target_modules=args.target_modules,
         ds_config=strategy.get_ds_train_config(is_actor=True),
     )
-    torch.cuda.is_available():
+    if torch.cuda.is_available():
         model.to('cuda')
     ref_model = Actor(
         args.ref_pretrain,
@@ -55,7 +55,7 @@ def train(args):
         target_modules=args.target_modules,
         ds_config=strategy.get_ds_eval_config(offload=args.ref_offload),
     )
-    torch.cuda.is_available():
+    if torch.cuda.is_available():
         ref_model.to('cuda')
     if args.ref_offload:
         ref_model._offload = True

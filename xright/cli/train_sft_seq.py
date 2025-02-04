@@ -30,7 +30,7 @@ def train(args):
         model_name='model'
     )
 
-    torch.cuda.is_available():
+    if torch.cuda.is_available():
         model.to('cuda')
 
     ref_model = Actor(
@@ -46,7 +46,7 @@ def train(args):
         model_name='ref_model'
     )
 
-    torch.cuda.is_available():
+    if torch.cuda.is_available():
         ref_model.to('cuda')
 
     # configure tokenizer
