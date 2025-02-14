@@ -2,6 +2,7 @@ import argparse
 import math
 import os
 from datetime import datetime
+import torch
 
 from transformers.trainer import get_scheduler
 
@@ -10,7 +11,7 @@ from xright.models import Actor
 from xright.trainer import SFT_Seq_Trainer
 from xright.utils import blending_datasets, get_strategy, get_tokenizer
 
-import torch
+
 
 def train(args):
     # configure strategy

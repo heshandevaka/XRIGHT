@@ -4,6 +4,7 @@ import os
 from collections import OrderedDict
 from copy import deepcopy
 from datetime import datetime
+import torch
 
 from transformers.trainer import get_scheduler
 
